@@ -2,8 +2,8 @@
 
 public class StringCalculator
 {
-    public int Add(string empty)
+    public int Add(string input)
     {
-        return 0;
+        return int.Parse(input);
     }
 }
