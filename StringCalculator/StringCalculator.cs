@@ -11,14 +11,12 @@ public class StringCalculator
             return 0;
         }
 
-        int delimiterIndex = input.IndexOf(Delimiter);
-        if (delimiterIndex == -1)
+        int result = 0;
+        foreach (string number in input.Split(Delimiter))
         {
-            return int.Parse(input);
+            result += int.Parse(number);
         }
 
-        string firstNumber = input.Substring(0, delimiterIndex);
-        string secondNumber = input.Substring(delimiterIndex + 1);
-        return int.Parse(firstNumber) + int.Parse(secondNumber);
+        return result;
     }
 }
