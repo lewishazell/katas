@@ -12,6 +12,11 @@ public class StringCalculator
         }
 
         int delimiterIndex = input.IndexOf(Delimiter);
+        if (delimiterIndex == -1)
+        {
+            return int.Parse(input);
+        }
+
         string firstNumber = input.Substring(0, delimiterIndex);
         string secondNumber = input.Substring(delimiterIndex + 1);
         return int.Parse(firstNumber) + int.Parse(secondNumber);
