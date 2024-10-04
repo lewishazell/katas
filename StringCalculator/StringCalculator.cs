@@ -2,7 +2,9 @@
 
 public class StringCalculator
 {
-    private static readonly char[] Delimiters = [',', '\n'];
+    private const char NewLine = '\n';
+    private const char DefaultDelimiter = ',';
+    private const string CustomDelimiterMarker = "//";
 
     public int Add(string input)
     {
@@ -11,12 +13,24 @@ public class StringCalculator
             return 0;
         }
 
-        int result = 0;
-        foreach (string number in input.Split(Delimiters))
+        char delimiter = DefaultDelimiter;
+        if (input.StartsWith(CustomDelimiterMarker))
         {
-            result += int.Parse(number);
+            delimiter = input[CustomDelimiterMarker.Length];
+        }
+
+        char[] delimiters = [NewLine, delimiter];
+        int result = 0;
+        foreach (string number in input.Split(delimiters))
+        {
+            if (int.TryParse(number, out int parsed))
+            {
+                result += parsed;
+            }
         }
 
         return result;
     }
+
+
 }
