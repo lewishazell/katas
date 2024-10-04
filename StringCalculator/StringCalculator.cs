@@ -2,7 +2,7 @@
 
 public class StringCalculator
 {
-    private const char Delimiter = ',';
+    private static readonly char[] Delimiters = [',', '\n'];
 
     public int Add(string input)
     {
@@ -12,7 +12,7 @@ public class StringCalculator
         }
 
         int result = 0;
-        foreach (string number in input.Split(Delimiter))
+        foreach (string number in input.Split(Delimiters))
         {
             result += int.Parse(number);
         }
