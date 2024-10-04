@@ -13,13 +13,7 @@ public class StringCalculator
             return 0;
         }
 
-        char delimiter = DefaultDelimiter;
-        if (input.StartsWith(CustomDelimiterMarker))
-        {
-            delimiter = input[CustomDelimiterMarker.Length];
-        }
-
-        char[] delimiters = [NewLine, delimiter];
+        char[] delimiters = [NewLine, ReadDelimiter(input)];
         int result = 0;
         foreach (string number in input.Split(delimiters))
         {
@@ -32,5 +26,13 @@ public class StringCalculator
         return result;
     }
 
+    private static char ReadDelimiter(string input)
+    {
+        if (input.StartsWith(CustomDelimiterMarker))
+        {
+            return input[CustomDelimiterMarker.Length];
+        }
 
+        return DefaultDelimiter;
+    }
 }
