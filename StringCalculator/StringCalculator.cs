@@ -14,16 +14,15 @@ public class StringCalculator
         }
 
         char[] delimiters = [NewLine, ReadDelimiter(input)];
-        int result = 0;
-        foreach (string number in input.Split(delimiters))
+        return input.Split(delimiters).Aggregate(0, (accumulated, potentialNumber) =>
         {
-            if (int.TryParse(number, out int parsed))
+            if (int.TryParse(potentialNumber, out int number))
             {
-                result += parsed;
+                return accumulated + number;
             }
-        }
 
-        return result;
+            return accumulated;
+        });
     }
 
     private static char ReadDelimiter(string input)
