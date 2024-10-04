@@ -31,6 +31,8 @@ public class StringCalculatorTests
     [InlineData("256,64,128,32,64,16", 560)]
     public void When_I_Pass_An_Unknown_Amount_Of_Numbers_I_Expect_A_Result_Of_Their_Sum(string input, int expectedResult) => TestAdd(input, expectedResult);
 
+    [Fact]
+    public void When_I_Pass_Numbers_Delimited_By_NewLines_And_Commas_I_Expect_A_Result_Of_Their_Sum() => TestAdd("1\n2,3", 6);
 
     private void TestAdd(string input, int expectedResult)
     {
