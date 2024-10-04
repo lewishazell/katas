@@ -34,6 +34,9 @@ public class StringCalculatorTests
     [Fact]
     public void When_I_Pass_Numbers_Delimited_By_NewLines_And_Commas_I_Expect_A_Result_Of_Their_Sum() => TestAdd("1\n2,3", 6);
 
+    [Fact]
+    public void When_I_Specify_A_Delimiter_On_The_First_Line_I_Expect_To_Be_Able_To_Delimit_Numbers_By_It() => TestAdd("//;\n1;2", 3);
+
     private void TestAdd(string input, int expectedResult)
     {
         int result = sut.Add(input);
