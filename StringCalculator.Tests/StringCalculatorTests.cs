@@ -37,6 +37,16 @@ public class StringCalculatorTests
     [Fact]
     public void When_I_Specify_A_Delimiter_On_The_First_Line_I_Expect_To_Be_Able_To_Delimit_Numbers_By_It() => TestAdd("//;\n1;2", 3);
 
+    [Theory]
+    [InlineData("1,-1", "-1")]
+    [InlineData("1,-1,-2", "-1,-2")]
+    public void When_I_Pass_A_Negative_Number_I_Expect_An_Exception_To_Be_Thrown(string input, string expectedNegatives)
+    {
+        var exception = Assert.Throws<InvalidNumberException>(() => sut.Add(input));
+
+        Assert.Equal($"negatives not allowed {expectedNegatives}", exception.Message);
+    }
+
     private void TestAdd(string input, int expectedResult)
     {
         int result = sut.Add(input);
