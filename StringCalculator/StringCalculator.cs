@@ -12,7 +12,7 @@ public class StringCalculator
         }
 
         string[] delimiters = [NewLine, ..ReadDelimiterHeader(input, out int startIndex)];
-        IEnumerable<int> numbers = input.Substring(startIndex).Split(delimiters, StringSplitOptions.RemoveEmptyEntries)
+        IEnumerable<int> numbers = input[startIndex..].Split(delimiters, StringSplitOptions.RemoveEmptyEntries)
             .Select(int.Parse)
             .Where(number => number <= 1000)
             .ToList();
