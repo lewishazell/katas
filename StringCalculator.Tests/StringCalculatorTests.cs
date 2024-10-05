@@ -50,6 +50,9 @@ public class StringCalculatorTests
     [Fact]
     public void When_I_Pass_A_Number_Greater_Than_1000_I_Expect_It_To_Be_Ignored_In_The_Resulting_Sum() => TestAdd("2,1001", 2);
 
+    [Fact]
+    public void When_I_Specify_A_Multi_Character_Delimiter_I_Expected_To_Be_Able_To_Delimit_Numbers_By_It() => TestAdd("//[***]\n1***2***3", 6);
+
     private void TestAdd(string input, int expectedResult)
     {
         int result = sut.Add(input);
