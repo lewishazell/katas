@@ -27,7 +27,7 @@ public class StringCalculatorTests
     [InlineData("0,0,0", 0)]
     [InlineData("1,1,0", 2)]
     [InlineData("1,2,3,4,5", 15)]
-    [InlineData("1,20,300", 321)]
+    [InlineData("1,20,300,1000", 1321)]
     [InlineData("256,64,128,32,64,16", 560)]
     public void When_I_Pass_An_Unknown_Amount_Of_Numbers_I_Expect_A_Result_Of_Their_Sum(string input, int expectedResult) => TestAdd(input, expectedResult);
 
