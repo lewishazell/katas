@@ -56,6 +56,9 @@ public class StringCalculatorTests
     [Fact]
     public void When_I_Specify_Multiple_Delimiters_I_Expect_To_Be_Able_To_Delimit_Numbers_By_All_Of_Them() => TestAdd("//[*][%]\n1*2%3", 6);
 
+    [Fact]
+    public void When_I_Specify_Multiple_Multi_Character_Delimiters_I_Expect_To_Be_Able_To_Delimit_Numbers_By_All_Of_Them() => TestAdd("//[***][%%%]\n1***2%%%3", 6);
+
     private void TestAdd(string input, int expectedResult)
     {
         int result = sut.Add(input);
