@@ -31,28 +31,26 @@ public class StringCalculator
         if (input.StartsWith(DelimiterHeaderMarker))
         {
             int headerStartIndex = DelimiterHeaderMarker.Length;
-
-            if (input[headerStartIndex] == MultiCharDelimiterOpenSymbol)
-            {
-                List<string> delimiters = [];
-                int tokenStartIndex = headerStartIndex;
-
-                do
-                {
-                    int tokenEndIndex = input.IndexOf(MultiCharDelimiterCloseSymbol, tokenStartIndex);
-                    
-                    delimiters.Add(input[(tokenStartIndex + 1)..tokenEndIndex]);
-                    tokenStartIndex = tokenEndIndex + 1;
-                } while (input[tokenStartIndex] == MultiCharDelimiterOpenSymbol);
-
-                length = tokenStartIndex;
-                return delimiters;
-            }
-            else
+            
+            if(input[headerStartIndex] != MultiCharDelimiterOpenSymbol)
             {
                 length = headerStartIndex + 1;
                 return [input[headerStartIndex].ToString()];
             }
+
+            List<string> delimiters = [];
+            int tokenStartIndex = headerStartIndex;
+
+            do
+            {
+                int tokenEndIndex = input.IndexOf(MultiCharDelimiterCloseSymbol, tokenStartIndex);
+
+                delimiters.Add(input[(tokenStartIndex + 1)..tokenEndIndex]);
+                tokenStartIndex = tokenEndIndex + 1;
+            } while (input[tokenStartIndex] == MultiCharDelimiterOpenSymbol);
+
+            length = tokenStartIndex;
+            return delimiters;
         }
 
         length = 0;
