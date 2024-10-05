@@ -25,25 +25,25 @@ public class StringCalculator
     {
         const string DefaultDelimiter = ",";
         const string CustomDelimiterMarker = "//";
-        const char MultiCharDelimiterOpenToken = '[';
-        const char MultiCharDelimiterCloseToken = ']';        
+        const char MultiCharDelimiterOpenSymbol = '[';
+        const char MultiCharDelimiterCloseSymbol = ']';        
 
         if (input.StartsWith(CustomDelimiterMarker))
         {
             int headerStartIndex = CustomDelimiterMarker.Length;
 
-            if (input[headerStartIndex] == MultiCharDelimiterOpenToken)
+            if (input[headerStartIndex] == MultiCharDelimiterOpenSymbol)
             {
                 List<string> delimiters = [];
                 int nextTokenIndex = headerStartIndex;
 
                 do
                 {
-                    int endIndex = input.IndexOf(MultiCharDelimiterCloseToken, nextTokenIndex);
+                    int endIndex = input.IndexOf(MultiCharDelimiterCloseSymbol, nextTokenIndex);
 
                     delimiters.Add(input[(nextTokenIndex + 1)..endIndex]);
                     nextTokenIndex = endIndex + 1;
-                } while (input[nextTokenIndex] == MultiCharDelimiterOpenToken);
+                } while (input[nextTokenIndex] == MultiCharDelimiterOpenSymbol);
 
                 length = nextTokenIndex;
                 return delimiters;
