@@ -26,7 +26,7 @@ public class StringCalculator
         const string DefaultDelimiter = ",";
         const string CustomDelimiterMarker = "//";
         const char MultiCharDelimiterOpenSymbol = '[';
-        const char MultiCharDelimiterCloseSymbol = ']';        
+        const char MultiCharDelimiterCloseSymbol = ']';
 
         if (input.StartsWith(CustomDelimiterMarker))
         {
@@ -35,17 +35,17 @@ public class StringCalculator
             if (input[headerStartIndex] == MultiCharDelimiterOpenSymbol)
             {
                 List<string> delimiters = [];
-                int nextTokenIndex = headerStartIndex;
+                int tokenStartIndex = headerStartIndex;
 
                 do
                 {
-                    int endIndex = input.IndexOf(MultiCharDelimiterCloseSymbol, nextTokenIndex);
+                    int tokenEndIndex = input.IndexOf(MultiCharDelimiterCloseSymbol, tokenStartIndex);
+                    
+                    delimiters.Add(input[(tokenStartIndex + 1)..tokenEndIndex]);
+                    tokenStartIndex = tokenEndIndex + 1;
+                } while (input[tokenStartIndex] == MultiCharDelimiterOpenSymbol);
 
-                    delimiters.Add(input[(nextTokenIndex + 1)..endIndex]);
-                    nextTokenIndex = endIndex + 1;
-                } while (input[nextTokenIndex] == MultiCharDelimiterOpenSymbol);
-
-                length = nextTokenIndex;
+                length = tokenStartIndex;
                 return delimiters;
             }
             else
