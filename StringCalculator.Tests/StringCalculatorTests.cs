@@ -47,6 +47,9 @@ public class StringCalculatorTests
         Assert.Equal($"negatives not allowed {expectedNegatives}", exception.Message);
     }
 
+    [Fact]
+    public void When_I_Pass_A_Number_Greater_Than_1000_I_Expect_It_To_Be_Ignored_In_The_Resulting_Sum() => TestAdd("1,1001", 1);
+
     private void TestAdd(string input, int expectedResult)
     {
         int result = sut.Add(input);
