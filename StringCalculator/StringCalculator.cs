@@ -14,7 +14,10 @@ public class StringCalculator
         }
 
         char[] delimiters = [NewLine, ReadDelimiter(input, out int startIndex)];
-        IEnumerable<int> numbers = input.Substring(startIndex).Split(delimiters, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList();
+        IEnumerable<int> numbers = input.Substring(startIndex).Split(delimiters, StringSplitOptions.RemoveEmptyEntries)
+            .Select(int.Parse)
+            .Where(number => number <= 1000)
+            .ToList();
         
         Validate(numbers);
         return numbers.Sum();
