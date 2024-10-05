@@ -48,7 +48,7 @@ public class StringCalculatorTests
     }
 
     [Fact]
-    public void When_I_Pass_A_Number_Greater_Than_1000_I_Expect_It_To_Be_Ignored_In_The_Resulting_Sum() => TestAdd("1,1001", 1);
+    public void When_I_Pass_A_Number_Greater_Than_1000_I_Expect_It_To_Be_Ignored_In_The_Resulting_Sum() => TestAdd("2,1001", 2);
 
     private void TestAdd(string input, int expectedResult)
     {
