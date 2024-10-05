@@ -13,7 +13,7 @@ public class StringCalculator
             return 0;
         }
 
-        char[] delimiters = [NewLine, ReadDelimiter(input, out int startIndex)];
+        char[] delimiters = [NewLine, ReadDelimiterHeader(input, out int startIndex)];
         IEnumerable<int> numbers = input.Substring(startIndex).Split(delimiters, StringSplitOptions.RemoveEmptyEntries)
             .Select(int.Parse)
             .Where(number => number <= 1000)
@@ -23,13 +23,13 @@ public class StringCalculator
         return numbers.Sum();
     }
 
-    private static char ReadDelimiter(string input, out int startIndex)
+    private static char ReadDelimiterHeader(string input, out int length)
     {
-        startIndex = 0;
+        length = 0;
 
         if (input.StartsWith(CustomDelimiterMarker))
         {
-            startIndex = CustomDelimiterMarker.Length + 1;
+            length = CustomDelimiterMarker.Length + 1;
             return input[CustomDelimiterMarker.Length];
         }
 
