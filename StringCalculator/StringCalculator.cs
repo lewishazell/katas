@@ -13,21 +13,18 @@ public class StringCalculator
             return 0;
         }
 
-        char[] delimiters = [NewLine, ReadDelimiter(input)];
+        char[] delimiters = [NewLine, ReadDelimiter(input, out int startIndex)];
         List<int> negativeNumbers = [];
-        int result = input.Split(delimiters).Aggregate(0, (accumulated, potentialNumber) =>
+        int result = input.Substring(startIndex).Split(delimiters, StringSplitOptions.RemoveEmptyEntries).Aggregate(0, (accumulated, potentialNumber) =>
         {
-            if (int.TryParse(potentialNumber, out int number))
+            int number = int.Parse(potentialNumber);
+            
+            if (number < 0)
             {
-                if (number < 0)
-                {
-                    negativeNumbers.Add(number);
-                }
-
-                return accumulated + number;
+                negativeNumbers.Add(number);
             }
 
-            return accumulated;
+            return accumulated + number;
         });
 
         if (negativeNumbers.Any())
@@ -38,10 +35,13 @@ public class StringCalculator
         return result;
     }
 
-    private static char ReadDelimiter(string input)
+    private static char ReadDelimiter(string input, out int startIndex)
     {
+        startIndex = 0;
+
         if (input.StartsWith(CustomDelimiterMarker))
         {
+            startIndex = CustomDelimiterMarker.Length + 1;
             return input[CustomDelimiterMarker.Length];
         }
 
