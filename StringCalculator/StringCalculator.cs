@@ -24,13 +24,13 @@ public class StringCalculator
     private static IEnumerable<string> ReadDelimiterHeader(string input, out int length)
     {
         const string DefaultDelimiter = ",";
-        const string CustomDelimiterMarker = "//";
+        const string DelimiterHeaderMarker = "//";
         const char MultiCharDelimiterOpenSymbol = '[';
         const char MultiCharDelimiterCloseSymbol = ']';
 
-        if (input.StartsWith(CustomDelimiterMarker))
+        if (input.StartsWith(DelimiterHeaderMarker))
         {
-            int headerStartIndex = CustomDelimiterMarker.Length;
+            int headerStartIndex = DelimiterHeaderMarker.Length;
 
             if (input[headerStartIndex] == MultiCharDelimiterOpenSymbol)
             {
