@@ -2,9 +2,11 @@
 
 public class StringCalculator
 {
-    private const char NewLine = '\n';
-    private const char DefaultDelimiter = ',';
+    private const string NewLine = "\n";
+    private const string DefaultDelimiter = ",";
     private const string CustomDelimiterMarker = "//";
+    private const char MultiCharDelimiterOpenToken = '[';
+    private const char MultiCharDelimiterCloseToken = ']';
 
     public int Add(string input)
     {
@@ -13,7 +15,7 @@ public class StringCalculator
             return 0;
         }
 
-        char[] delimiters = [NewLine, ReadDelimiterHeader(input, out int startIndex)];
+        string[] delimiters = [NewLine, ReadDelimiterHeader(input, out int startIndex)];
         IEnumerable<int> numbers = input.Substring(startIndex).Split(delimiters, StringSplitOptions.RemoveEmptyEntries)
             .Select(int.Parse)
             .Where(number => number <= 1000)
@@ -23,14 +25,24 @@ public class StringCalculator
         return numbers.Sum();
     }
 
-    private static char ReadDelimiterHeader(string input, out int length)
+    private static string ReadDelimiterHeader(string input, out int length)
     {
         length = 0;
 
         if (input.StartsWith(CustomDelimiterMarker))
         {
-            length = CustomDelimiterMarker.Length + 1;
-            return input[CustomDelimiterMarker.Length];
+            int startIndex = CustomDelimiterMarker.Length;
+            if (input[startIndex] == MultiCharDelimiterOpenToken)
+            {
+                int endIndex = input.IndexOf(MultiCharDelimiterCloseToken);
+                length = endIndex + 1;
+                return input[(startIndex + 1)..endIndex];
+            }
+            else
+            {
+                length = startIndex + 1;
+                return input[startIndex].ToString();
+            }
         }
 
         return DefaultDelimiter;
