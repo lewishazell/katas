@@ -31,13 +31,13 @@ public class StringCalculator
 
         if (input.StartsWith(CustomDelimiterMarker))
         {
-            int startIndex = CustomDelimiterMarker.Length;
+            int headerStartIndex = CustomDelimiterMarker.Length;
 
-            if (input[startIndex] == MultiCharDelimiterOpenToken)
+            if (input[headerStartIndex] == MultiCharDelimiterOpenToken)
             {
                 List<string> delimiters = [];
+                int nextTokenIndex = headerStartIndex;
 
-                int nextTokenIndex = startIndex;
                 do
                 {
                     int endIndex = input.IndexOf(MultiCharDelimiterCloseToken, nextTokenIndex);
@@ -47,13 +47,12 @@ public class StringCalculator
                 } while (input[nextTokenIndex] == MultiCharDelimiterOpenToken);
 
                 length = nextTokenIndex;
-
                 return delimiters;
             }
             else
             {
-                length = startIndex + 1;
-                return [input[startIndex].ToString()];
+                length = headerStartIndex + 1;
+                return [input[headerStartIndex].ToString()];
             }
         }
 
