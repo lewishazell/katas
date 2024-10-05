@@ -14,25 +14,10 @@ public class StringCalculator
         }
 
         char[] delimiters = [NewLine, ReadDelimiter(input, out int startIndex)];
-        List<int> negativeNumbers = [];
-        int result = input.Substring(startIndex).Split(delimiters, StringSplitOptions.RemoveEmptyEntries).Aggregate(0, (accumulated, potentialNumber) =>
-        {
-            int number = int.Parse(potentialNumber);
-            
-            if (number < 0)
-            {
-                negativeNumbers.Add(number);
-            }
-
-            return accumulated + number;
-        });
-
-        if (negativeNumbers.Any())
-        {
-            throw new InvalidNumberException($"negatives not allowed {string.Join(',', negativeNumbers)}");
-        }
-
-        return result;
+        IEnumerable<int> numbers = input.Substring(startIndex).Split(delimiters, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList();
+        
+        Validate(numbers);
+        return numbers.Sum();
     }
 
     private static char ReadDelimiter(string input, out int startIndex)
@@ -46,5 +31,14 @@ public class StringCalculator
         }
 
         return DefaultDelimiter;
+    }
+
+    private static void Validate(IEnumerable<int> numbers)
+    {
+        IEnumerable<int> negativeNumbers = numbers.Where(number => number < 0).ToList();
+
+        if (negativeNumbers.Any()) {
+            throw new InvalidNumberException($"negatives not allowed {string.Join(',', negativeNumbers)}");
+        }
     }
 }
