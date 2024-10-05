@@ -14,15 +14,28 @@ public class StringCalculator
         }
 
         char[] delimiters = [NewLine, ReadDelimiter(input)];
-        return input.Split(delimiters).Aggregate(0, (accumulated, potentialNumber) =>
+        List<int> negativeNumbers = [];
+        int result = input.Split(delimiters).Aggregate(0, (accumulated, potentialNumber) =>
         {
             if (int.TryParse(potentialNumber, out int number))
             {
+                if (number < 0)
+                {
+                    negativeNumbers.Add(number);
+                }
+
                 return accumulated + number;
             }
 
             return accumulated;
         });
+
+        if (negativeNumbers.Any())
+        {
+            throw new InvalidNumberException($"negatives not allowed {string.Join(',', negativeNumbers)}");
+        }
+
+        return result;
     }
 
     private static char ReadDelimiter(string input)
