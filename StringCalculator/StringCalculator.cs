@@ -2,14 +2,10 @@
 
 public class StringCalculator
 {
-    private const string NewLine = "\n";
-    private const string DefaultDelimiter = ",";
-    private const string CustomDelimiterMarker = "//";
-    private const char MultiCharDelimiterOpenToken = '[';
-    private const char MultiCharDelimiterCloseToken = ']';
-
     public int Add(string input)
     {
+        const string NewLine = "\n";
+
         if (input == string.Empty)
         {
             return 0;
@@ -27,7 +23,10 @@ public class StringCalculator
 
     private static IEnumerable<string> ReadDelimiterHeader(string input, out int length)
     {
-        length = 0;
+        const string DefaultDelimiter = ",";
+        const string CustomDelimiterMarker = "//";
+        const char MultiCharDelimiterOpenToken = '[';
+        const char MultiCharDelimiterCloseToken = ']';        
 
         if (input.StartsWith(CustomDelimiterMarker))
         {
@@ -56,6 +55,7 @@ public class StringCalculator
             }
         }
 
+        length = 0;
         return [DefaultDelimiter];
     }
 
