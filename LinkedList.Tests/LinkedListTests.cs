@@ -97,6 +97,18 @@ public class LinkedListTests
         AssertPrintedListIs("foo,baz");
     }
 
+    [Fact]
+    public void When_I_Delete_An_Item_From_The_Tail_Of_The_List_I_Expect_It_To_Not_Be_Printed()
+    {
+        sut.Insert(0, "foo");
+        sut.Insert(1, "bar");
+        sut.Insert(2, "baz");
+
+        sut.Delete(2);
+
+        AssertPrintedListIs("foo,bar");
+    }
+
     private void AssertPrintedListIs(string expectedOutput)
     {
         Assert.Equal(expectedOutput, sut.PrintList());
