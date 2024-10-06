@@ -33,7 +33,16 @@ public class LinkedList<T>
         tail = newNode;
     }
 
-
+    /// <summary>
+    /// Inserts an element into the <see cref="LinkedList{T}"/> at the specified index.
+    /// </summary>
+    /// <param name="index">The zero-based index at which <paramref name="value"/> should be inserted.</param>
+    /// <param name="value">The object to insert. The value can be <code>null</code> for reference types.</param>
+    /// <exception cref="IndexOutOfRangeException">
+    ///     <paramref name="index"/> is less than 0.
+    ///     -or-
+    ///     <paramref name="index"/> is equal to or greater than the number of items.
+    /// </exception>
     public void Insert(int index, T value)
     {
         if (index < 0)
