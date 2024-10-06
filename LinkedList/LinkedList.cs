@@ -30,6 +30,11 @@ public class LinkedList<T>
     {
         if (index == 0)
         {
+            if (head == null)
+            {
+                throw new IndexOutOfRangeException();
+            }
+
             head = head?.Next;
             
             return;
