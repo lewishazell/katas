@@ -115,6 +115,12 @@ public class LinkedListTests
         Assert.Throws<IndexOutOfRangeException>(() => sut.Insert(1, "foo"));
     }
 
+    [Fact]
+    public void When_I_Delete_At_An_Unavailable_Position_I_Expect_An_IndexOutOfRangeException_To_Be_Thrown()
+    {
+        Assert.Throws<IndexOutOfRangeException>(() => sut.Delete(0));
+    }
+
     private void AssertPrintedListIs(string expectedOutput)
     {
         Assert.Equal(expectedOutput, sut.PrintList());
