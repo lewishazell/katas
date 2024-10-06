@@ -14,7 +14,7 @@ public class LinkedList<T>
             throw new IndexOutOfRangeException();
         }
 
-        Node newNode = new() { Value = value };
+        Node newNode = new(value);
 
         if (index == 0)
         {
@@ -87,9 +87,14 @@ public class LinkedList<T>
 
     private class Node
     {
-        public required T Value { get; set; }
+        public T Value { get; }
 
         public Node? Next { get; set; }
+
+        public Node(T value)
+        {
+            Value = value;
+        }
 
         public override string? ToString() => Value?.ToString();
     }
