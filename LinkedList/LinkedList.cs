@@ -9,13 +9,17 @@ public class LinkedList<T>
 
     public void Insert(int index, T value)
     {
+        Node node = new() { Value = value };
+
         if (index == 0)
         {
-            head = new() { Value = value };
+            node.Next = head?.Next;
+
+            head = node;
         }
         else if (index == 1 && head is not null)
         {
-            head.Next = new() { Value = value };
+            head.Next = node;
         }
         else
         {
