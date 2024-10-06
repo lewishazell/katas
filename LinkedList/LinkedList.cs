@@ -9,6 +9,11 @@ public class LinkedList<T>
 
     public void Insert(int index, T value)
     {
+        if (index < 0)
+        {
+            throw new IndexOutOfRangeException();
+        }
+
         Node newNode = new() { Value = value };
 
         if (index == 0)
@@ -28,6 +33,11 @@ public class LinkedList<T>
 
     public void Delete(int index)
     {
+        if (index < 0)
+        {
+            throw new IndexOutOfRangeException();
+        }
+
         if (index == 0)
         {
             if (head == null)
