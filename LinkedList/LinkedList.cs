@@ -9,37 +9,45 @@ public class LinkedList<T>
 
     public void Insert(int index, T value)
     {
+        int currentIndex = 0;
         Node node = new() { Value = value };
 
         if (index == 0)
         {
             node.Next = head?.Next;
-
             head = node;
+
+            return;
         }
-        else if (index == 1 && head is not null)
+
+        for (Node? currentNode = head; currentNode is not null; currentNode = currentNode.Next)
         {
-            head.Next = node;
+            if (currentIndex == index - 1)
+            {
+                node.Next = currentNode.Next?.Next;
+                currentNode.Next = node;
+
+                return;
+            }
+
+            currentIndex++;
         }
-        else
-        {
-            throw new IndexOutOfRangeException();
-        }
+        
+        throw new IndexOutOfRangeException();
     }
 
     public string PrintList()
     {
         stringBuilder.Clear();
 
-        if (head is not null)
+        for (Node? currentNode = head; currentNode is not null; currentNode = currentNode.Next)
         {
-            stringBuilder.Append(head.ToString());
-
-            if (head.Next is not null)
+            if (currentNode != head)
             {
                 stringBuilder.Append(',');
-                stringBuilder.Append(head.Next.ToString());
             }
+
+            stringBuilder.Append(currentNode.ToString());
         }
 
         return stringBuilder.ToString();
