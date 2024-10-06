@@ -109,6 +109,12 @@ public class LinkedListTests
         AssertPrintedListIs("foo,bar");
     }
 
+    [Fact]
+    public void When_I_Insert_At_An_Unavailable_Position_I_Expect_An_IndexOutOfRangeException_To_Be_Thrown()
+    {
+        Assert.Throws<IndexOutOfRangeException>(() => sut.Insert(1, "foo"));
+    }
+
     private void AssertPrintedListIs(string expectedOutput)
     {
         Assert.Equal(expectedOutput, sut.PrintList());
