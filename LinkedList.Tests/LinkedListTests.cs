@@ -23,4 +23,16 @@ public class LinkedListTests
 
         Assert.Equal("example", output);
     }
+
+    [Fact]
+    public void When_I_Insert_Two_Items_Into_A_List_I_Expect_Both_To_Be_Printed()
+    {
+        LinkedList<string> sut = new();
+        sut.Insert(0, "foo");
+        sut.Insert(1, "bar");
+
+        string output = sut.PrintList();
+
+        Assert.Equal("foo,bar", output);
+    }
 }
