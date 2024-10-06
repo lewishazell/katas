@@ -13,7 +13,7 @@ public class LinkedList<T>
 
         if (index == 0)
         {
-            newNode.Next = head?.Next;
+            newNode.Next = head;
             head = newNode;
 
             return;
@@ -21,7 +21,7 @@ public class LinkedList<T>
 
         Update(index - 1, node =>
         {
-            newNode.Next = node.Next?.Next;
+            newNode.Next = node.Next;
             node.Next = newNode;
         });
     }
