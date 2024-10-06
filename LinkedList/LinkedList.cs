@@ -36,6 +36,18 @@ public class LinkedList<T>
         throw new IndexOutOfRangeException();
     }
 
+    public void Delete(int index)
+    {
+        if (index == 0)
+        {
+            head = head?.Next;
+            
+            return;
+        }
+
+        throw new IndexOutOfRangeException();
+    }
+
     public string PrintList()
     {
         stringBuilder.Clear();
