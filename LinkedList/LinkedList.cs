@@ -49,6 +49,12 @@ public class LinkedList<T>
         }
 
         Node node = NodeAt(index - 1);
+
+        if (node.Next is null)
+        {
+            throw new IndexOutOfRangeException();
+        }
+
         newNode.Next = node.Next;
         node.Next = newNode;
     }
