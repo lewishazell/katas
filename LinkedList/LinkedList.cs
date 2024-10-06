@@ -76,6 +76,15 @@ public class LinkedList<T>
         node.Next = newNode;
     }
 
+    /// <summary>
+    /// Deletes the element at the specified index of the <see cref="LinkedList{T}"/>.
+    /// </summary>
+    /// <param name="index">THe zero-based index of the element to remove.</param>
+    /// <exception cref="IndexOutOfRangeException">
+    ///     <paramref name="index"/> is less than 0.
+    ///     -or-
+    ///     <paramref name="index"/> is equal to or greater than the number of items.
+    /// </exception>
     public void Delete(int index)
     {
         if (index < 0)
