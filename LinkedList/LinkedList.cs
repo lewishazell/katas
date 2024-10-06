@@ -9,7 +9,6 @@ public class LinkedList<T>
 
     public void Insert(int index, T value)
     {
-        int currentIndex = 0;
         Node node = new() { Value = value };
 
         if (index == 0)
@@ -20,6 +19,7 @@ public class LinkedList<T>
             return;
         }
 
+        int currentIndex = 0;
         for (Node? currentNode = head; currentNode is not null; currentNode = currentNode.Next)
         {
             if (currentIndex == index - 1)
