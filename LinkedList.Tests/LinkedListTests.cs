@@ -35,4 +35,17 @@ public class LinkedListTests
 
         Assert.Equal("foo,bar", output);
     }
+
+    [Fact]
+    public void When_I_Replace_The_First_Item_In_A_Two_Item_List_I_Expect_The_New_Item_To_Be_Displayed_In_Place_Of_The_Original()
+    {
+        LinkedList<string> sut = new();
+        sut.Insert(0, "foo");
+        sut.Insert(1, "bar");
+        sut.Insert(0, "baz");
+
+        string output = sut.PrintList();
+
+        Assert.Equal("baz,bar", output);
+    }
 }
