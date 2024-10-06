@@ -24,11 +24,9 @@ public class LinkedList<T>
             return;
         }
 
-        Update(index - 1, node =>
-        {
-            newNode.Next = node.Next;
-            node.Next = newNode;
-        });
+        Node node = NodeAt(index - 1);
+        newNode.Next = node.Next;
+        node.Next = newNode;
     }
 
     public void Delete(int index)
@@ -50,7 +48,8 @@ public class LinkedList<T>
             return;
         }
 
-        Update(index - 1, node => node.Next = node.Next?.Next);
+        Node node = NodeAt(index - 1);
+        node.Next = node.Next?.Next;
     }
 
     public string PrintList()
@@ -70,16 +69,14 @@ public class LinkedList<T>
         return stringBuilder.ToString();
     }
 
-    private void Update(int index, Action<Node> action)
+    private Node NodeAt(int index)
     {
         int currentIndex = 0;
         for (Node? currentNode = head; currentNode is not null; currentNode = currentNode.Next)
         {
             if (currentIndex == index)
             {
-                action(currentNode);
-
-                return;
+                return currentNode;
             }
 
             currentIndex++;
