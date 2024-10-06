@@ -9,31 +9,21 @@ public class LinkedList<T>
 
     public void Insert(int index, T value)
     {
-        Node node = new() { Value = value };
+        Node newNode = new() { Value = value };
 
         if (index == 0)
         {
-            node.Next = head?.Next;
-            head = node;
+            newNode.Next = head?.Next;
+            head = newNode;
 
             return;
         }
 
-        int currentIndex = 0;
-        for (Node? currentNode = head; currentNode is not null; currentNode = currentNode.Next)
+        Update(index - 1, node =>
         {
-            if (currentIndex == index - 1)
-            {
-                node.Next = currentNode.Next?.Next;
-                currentNode.Next = node;
-
-                return;
-            }
-
-            currentIndex++;
-        }
-        
-        throw new IndexOutOfRangeException();
+            newNode.Next = node.Next?.Next;
+            node.Next = newNode;
+        });
     }
 
     public void Delete(int index)
@@ -45,20 +35,7 @@ public class LinkedList<T>
             return;
         }
 
-        int currentIndex = 0;
-        for (Node? currentNode = head; currentNode is not null; currentNode = currentNode.Next)
-        {
-            if (currentIndex == index - 1)
-            {
-                currentNode.Next = currentNode.Next?.Next;
-
-                return;
-            }
-
-            currentIndex++;
-        }
-
-        throw new IndexOutOfRangeException();
+        Update(index - 1, node => node.Next = node.Next?.Next);
     }
 
     public string PrintList()
@@ -76,6 +53,24 @@ public class LinkedList<T>
         }
 
         return stringBuilder.ToString();
+    }
+
+    private void Update(int index, Action<Node> action)
+    {
+        int currentIndex = 0;
+        for (Node? currentNode = head; currentNode is not null; currentNode = currentNode.Next)
+        {
+            if (currentIndex == index)
+            {
+                action(currentNode);
+
+                return;
+            }
+
+            currentIndex++;
+        }
+
+        throw new IndexOutOfRangeException();
     }
 
     private class Node
