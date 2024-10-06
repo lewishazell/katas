@@ -30,13 +30,13 @@ public class LinkedListTests
     }
 
     [Fact]
-    public void When_I_Replace_The_First_Item_In_A_Two_Item_List_I_Expect_The_New_Item_To_Be_Displayed_In_Place_Of_The_Original()
+    public void When_I_Replace_The_First_Item_In_A_Two_Item_List_I_Expect_The_New_Item_To_Be_Displayed_Before_The_Original()
     {
         sut.Insert(0, "foo");
         sut.Insert(1, "bar");
         sut.Insert(0, "baz");
 
-        AssertPrintedListIs("baz,bar");
+        AssertPrintedListIs("baz,foo,bar");
     }
 
     [Fact]
@@ -52,25 +52,25 @@ public class LinkedListTests
     }
 
     [Fact]
-    public void When_I_Insert_An_Item_Into_The_Middle_Of_A_List_I_Expect_The_New_Item_To_Print_In_Place_Of_The_Original()
+    public void When_I_Insert_An_Item_Into_The_Middle_Of_A_List_I_Expect_The_New_Item_To_Print_Before_The_Original()
     {
         sut.Insert(0, "foo");
         sut.Insert(1, "bar");
         sut.Insert(2, "baz");
         sut.Insert(1, "qux");
 
-        AssertPrintedListIs("foo,qux,baz");
+        AssertPrintedListIs("foo,qux,bar,baz");
     }
 
     [Fact]
-    public void When_I_Insert_An_Item_Into_The_End_Of_A_List_I_Expect_The_New_Item_To_Print_In_Place_Of_The_Original()
+    public void When_I_Insert_An_Item_Into_The_Last_Index_Of_A_List_I_Expect_The_New_Item_To_Print_Before_The_Original()
     {
         sut.Insert(0, "foo");
         sut.Insert(1, "bar");
         sut.Insert(2, "baz");
         sut.Insert(2, "qux");
 
-        AssertPrintedListIs("foo,bar,qux");
+        AssertPrintedListIs("foo,bar,qux,baz");
     }
 
     [Fact]
