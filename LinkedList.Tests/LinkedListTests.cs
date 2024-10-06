@@ -110,9 +110,9 @@ public class LinkedListTests
     }
 
     [Fact]
-    public void When_I_Insert_At_An_Unavailable_Index_I_Expect_An_IndexOutOfRangeException_To_Be_Thrown()
+    public void When_I_Insert_The_First_Item_I_Expect_An_IndexOutOfRangeException_To_Be_Thrown()
     {
-        Assert.Throws<IndexOutOfRangeException>(() => sut.Insert(1, "foo"));
+        Assert.Throws<IndexOutOfRangeException>(() => sut.Insert(0, "foo"));
     }
 
     [Fact]
