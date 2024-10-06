@@ -15,7 +15,7 @@ public class LinkedListTests
     [Fact]
     public void When_I_Insert_An_Item_Into_A_List_I_Expect_It_To_Be_Printed()
     {
-        sut.Insert(0, "example");
+        sut.Add("example");
 
         AssertPrintedListIs("example");
     }
@@ -23,8 +23,8 @@ public class LinkedListTests
     [Fact]
     public void When_I_Insert_Two_Items_Into_A_List_I_Expect_Both_To_Be_Printed()
     {
-        sut.Insert(0, "foo");
-        sut.Insert(1, "bar");
+        sut.Add("foo");
+        sut.Add("bar");
 
         AssertPrintedListIs("foo,bar");
     }
@@ -32,8 +32,8 @@ public class LinkedListTests
     [Fact]
     public void When_I_Replace_The_First_Item_In_A_Two_Item_List_I_Expect_The_New_Item_To_Be_Displayed_Before_The_Original()
     {
-        sut.Insert(0, "foo");
-        sut.Insert(1, "bar");
+        sut.Add("foo");
+        sut.Add("bar");
         sut.Insert(0, "baz");
 
         AssertPrintedListIs("baz,foo,bar");
@@ -42,11 +42,11 @@ public class LinkedListTests
     [Fact]
     public void When_I_Insert_An_Unknown_Number_Of_Items_Into_A_List_I_Expect_All_Items_To_Be_Printed()
     {
-        sut.Insert(0, "foo");
-        sut.Insert(1, "bar");
-        sut.Insert(2, "baz");
-        sut.Insert(3, "qux");
-        sut.Insert(4, "quux");
+        sut.Add("foo");
+        sut.Add("bar");
+        sut.Add("baz");
+        sut.Add("qux");
+        sut.Add("quux");
 
         AssertPrintedListIs("foo,bar,baz,qux,quux");
     }
@@ -54,9 +54,9 @@ public class LinkedListTests
     [Fact]
     public void When_I_Insert_An_Item_Into_The_Middle_Of_A_List_I_Expect_The_New_Item_To_Print_Before_The_Original()
     {
-        sut.Insert(0, "foo");
-        sut.Insert(1, "bar");
-        sut.Insert(2, "baz");
+        sut.Add("foo");
+        sut.Add("bar");
+        sut.Add("baz");
         sut.Insert(1, "qux");
 
         AssertPrintedListIs("foo,qux,bar,baz");
@@ -65,9 +65,9 @@ public class LinkedListTests
     [Fact]
     public void When_I_Insert_An_Item_Into_The_Last_Index_Of_A_List_I_Expect_The_New_Item_To_Print_Before_The_Original()
     {
-        sut.Insert(0, "foo");
-        sut.Insert(1, "bar");
-        sut.Insert(2, "baz");
+        sut.Add("foo");
+        sut.Add("bar");
+        sut.Add("baz");
         sut.Insert(2, "qux");
 
         AssertPrintedListIs("foo,bar,qux,baz");
@@ -76,9 +76,9 @@ public class LinkedListTests
     [Fact]
     public void When_I_Delete_An_Item_I_Expect_It_To_Not_Be_Printed()
     {
-        sut.Insert(0, "foo");
-        sut.Insert(1, "bar");
-        sut.Insert(2, "baz");
+        sut.Add("foo");
+        sut.Add("bar");
+        sut.Add("baz");
         
         sut.Delete(0);
 
@@ -88,9 +88,9 @@ public class LinkedListTests
     [Fact]
     public void When_I_Delete_An_Item_From_The_Middle_Of_The_List_I_Expect_It_To_Not_Be_Printed()
     {
-        sut.Insert(0, "foo");
-        sut.Insert(1, "bar");
-        sut.Insert(2, "baz");
+        sut.Add("foo");
+        sut.Add("bar");
+        sut.Add("baz");
 
         sut.Delete(1);
 
@@ -100,9 +100,9 @@ public class LinkedListTests
     [Fact]
     public void When_I_Delete_An_Item_From_The_Tail_Of_The_List_I_Expect_It_To_Not_Be_Printed()
     {
-        sut.Insert(0, "foo");
-        sut.Insert(1, "bar");
-        sut.Insert(2, "baz");
+        sut.Add("foo");
+        sut.Add("bar");
+        sut.Add("baz");
 
         sut.Delete(2);
 

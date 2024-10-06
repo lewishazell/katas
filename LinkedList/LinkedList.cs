@@ -6,6 +6,25 @@ public class LinkedList<T>
 {
     private readonly StringBuilder stringBuilder = new();
     private Node? head;
+    private Node? tail;
+
+    public void Add(T value)
+    {
+        Node newNode = new(value);
+
+        if (head is null)
+        {
+            head = newNode;
+        }
+
+        if (tail is not null)
+        {
+            tail.Next = newNode;
+        }
+
+        tail = newNode;
+    }
+
 
     public void Insert(int index, T value)
     {
