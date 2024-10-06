@@ -2,6 +2,10 @@
 
 namespace LinkedList;
 
+/// <summary>
+/// Represents a singly linked list.
+/// </summary>
+/// <typeparam name="T">Specifies the element type of the linked list.</typeparam>
 public class LinkedList<T>
 {
     private readonly StringBuilder stringBuilder = new();
