@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Xml.Linq;
 
 namespace LinkedList;
 
@@ -43,6 +44,19 @@ public class LinkedList<T>
             head = head?.Next;
             
             return;
+        }
+
+        int currentIndex = 0;
+        for (Node? currentNode = head; currentNode is not null; currentNode = currentNode.Next)
+        {
+            if (currentIndex == index - 1)
+            {
+                currentNode.Next = currentNode.Next?.Next;
+
+                return;
+            }
+
+            currentIndex++;
         }
 
         throw new IndexOutOfRangeException();
