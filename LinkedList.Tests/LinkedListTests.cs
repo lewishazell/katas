@@ -51,6 +51,17 @@ public class LinkedListTests
         AssertPrintedListIs("foo,bar,baz,qux,quux");
     }
 
+    [Fact]
+    public void When_I_Insert_An_Item_Into_The_Middle_Of_A_List_I_Expect_The_New_Item_To_Print_In_Place_Of_The_Original()
+    {
+        sut.Insert(0, "foo");
+        sut.Insert(1, "bar");
+        sut.Insert(2, "baz");
+        sut.Insert(1, "qux");
+
+        AssertPrintedListIs("foo,qux,baz");
+    }
+
     private void AssertPrintedListIs(string expectedOutput)
     {
         Assert.Equal(expectedOutput, sut.PrintList());
