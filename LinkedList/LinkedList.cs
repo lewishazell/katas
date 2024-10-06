@@ -12,6 +12,10 @@ public class LinkedList<T>
     private Node? head;
     private Node? tail;
 
+    /// <summary>
+    /// Adds an object to the end of the <see cref="LinkedList{T}"/>.
+    /// </summary>
+    /// <param name="value">The object to be added to the end of the <see cref="LinkedList{T}"/>. The value can be <code>null</code> for reference types.</param>
     public void Add(T value)
     {
         Node newNode = new(value);
