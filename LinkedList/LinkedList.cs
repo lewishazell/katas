@@ -37,6 +37,11 @@ public class LinkedList<T>
 
         if (index == 0)
         {
+            if (head is null)
+            {
+                throw new IndexOutOfRangeException();
+            }
+
             newNode.Next = head;
             head = newNode;
 
